@@ -1,0 +1,842 @@
+openapi: 3.0.1
+info:
+  title: Rcxp Integration
+  description: Contains Rcxp Integration API
+  version: '1.0'
+servers:
+  - url: https://gw.qa.partner.api.volvocars.biz/rcxpintegration
+paths:
+  /composite:
+    post:
+      tags:
+        - RcxpIntegration
+      summary: Post composite requests towards Salesforce
+      description: Post composite requests towards Salesforce
+      operationId: Post-composite-requests-towards-Salesforce
+      parameters:
+        - name: VCC-Api-OperationId
+          in: header
+          description: A transaction unique id which can be used do identify the transaction in integrated systems.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 200
+                statusMessage: OK
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 200
+                    response:
+                      - id: '123'
+                        success: true
+                        compositeResponse:
+                          - body:
+                              - id: '123'
+                                success: true
+                            httpHeaders:
+                              location: Somewhere inner
+                            httpStatusCode: 200
+                            referenceId: 123 inner
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 201
+                statusMessage: Created
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 201
+                    response:
+                      - id: '123'
+                        success: true
+                        compositeResponse:
+                          - body:
+                              - id: '123'
+                                success: true
+                            httpHeaders:
+                              location: Somewhere inner
+                            httpStatusCode: 201
+                            referenceId: 123 inner
+        '204':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 204
+                statusMessage: NoContent
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 204
+                    response:
+                      - id: '123'
+                        success: true
+                        compositeResponse:
+                          - httpHeaders:
+                              location: Somewhere inner
+                            httpStatusCode: 204
+                            referenceId: 123 inner
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.BadRequestResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 400
+                statusMessage: BadRequest
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: false
+                    statusCode: 400
+                    response:
+                      - id: '123'
+                        success: false
+                        message: Some message
+                        errorCode: Some error
+                        errors:
+                          - Some Error 1
+                          - Some Error 2
+                        fields:
+                          - Some Field 1
+                          - Some Field 2
+                        compositeResponse:
+                          - body:
+                              - id: '123'
+                                success: false
+                                message: Some inner message
+                                errorCode: Some inner error
+                                errors:
+                                  - Some inner Error 1
+                                  - Some inner Error 2
+                                fields:
+                                  - Some inner Field 1
+                                  - Some inner Field 2
+                            httpHeaders:
+                              location: Somewhere inner
+                            httpStatusCode: 400
+                            referenceId: 123 inner
+                errorMessage: 
+                responsibleSystem: 
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '503':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+  /custom:
+    post:
+      tags:
+        - RcxpIntegration
+      summary: Post a custom request towards Salesforce
+      description: Post a custom request towards Salesforce
+      operationId: Post-a-custom-request-towards-Salesforce
+      parameters:
+        - name: VCC-Api-OperationId
+          in: header
+          description: A transaction unique id which can be used do identify the transaction in integrated systems.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                url: string
+                method: GET
+                referenceId: string
+                body: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                url: string
+                method: GET
+                referenceId: string
+                body: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                url: string
+                method: GET
+                referenceId: string
+                body: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                url: string
+                method: GET
+                referenceId: string
+                body: { }
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 200
+                statusMessage: OK
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 200
+                    response:
+                      - id: '123'
+                        success: true
+        '201':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 201
+                statusMessage: Created
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 201
+                    response:
+                      - id: '123'
+                        success: true
+        '204':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 204
+                statusMessage: NoContent
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 204
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.BadRequestResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 400
+                statusMessage: BadRequest
+                operationId: UniqueTraceId
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: false
+                    statusCode: 400
+                    response:
+                      - id: '123'
+                        success: false
+                        message: Some message
+                        errorCode: Some error
+                        errors:
+                          - Some Error 1
+                          - Some Error 2
+                        fields:
+                          - Some Field 1
+                          - Some Field 2
+                errorMessage: 
+                responsibleSystem: 
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '503':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+  /soql:
+    post:
+      tags:
+        - RcxpIntegration
+      summary: Post soql request towards Salesforce
+      description: Post soql request towards Salesforce
+      operationId: Post-soql-request-towards-Salesforce
+      parameters:
+        - name: VCC-Api-OperationId
+          in: header
+          description: A transaction unique id which can be used do identify the transaction in integrated systems.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpSoqlContainer'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                soqlQuery: string
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpSoqlContainer'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                soqlQuery: string
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          text/json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpSoqlContainer'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                soqlQuery: string
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpSoqlContainer'
+            example:
+              rcxpUserType: IgnoreUpdateUser
+              source: string
+              content:
+                soqlQuery: string
+              apiVersion: string
+              logRequest: true
+              requestId: string
+              operationId: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 200
+                statusMessage: OK
+                operationId: 
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: true
+                    statusCode: 200
+                    response:
+                      - id: '123'
+                        success: true
+                    soqlResponse:
+                      - SomeField: SomeValue
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.BadRequestResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+              example:
+                statusCode: 400
+                statusMessage: BadRequest
+                operationId: 
+                responseDetails:
+                  rcxpGenericResponse:
+                    succeeded: false
+                    statusCode: 400
+                    response:
+                      - id: '123'
+                        success: false
+                        message: Some message
+                        errorCode: Some error
+                        errors:
+                          - Some Error 1
+                          - Some Error 2
+                        fields:
+                          - Some Field 1
+                          - Some Field 2
+                    soqlResponse:
+                      - SomeField: SomeValue
+                errorMessage: 
+                responsibleSystem: 
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+        '503':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vcep.Api.Models.Responses.StandardErrorResponse'
+              example:
+                statusCode: 0
+                statusMessage: string
+                operationId: string
+                errorMessage: string
+                responsibleSystem: string
+components:
+  schemas:
+    Vcep.Salesforce.Client.Enums.RcxpUserType:
+      enum:
+        - IgnoreUpdateUser
+        - UpdateAllUser
+        - IgnoreKompassUser
+      type: string
+    Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Newtonsoft.Json.Linq.JObject:
+      required:
+        - content
+        - rcxpUserType
+        - source
+      type: object
+      properties:
+        rcxpUserType:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Enums.RcxpUserType'
+        source:
+          type: string
+        content: { }
+        apiVersion:
+          type: string
+          nullable: true
+        logRequest:
+          type: boolean
+        requestId:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.Body:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        success:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        errors:
+          type: array
+          items:
+            type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.Httpheaders:
+      type: object
+      properties:
+        location:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.Compositeresponse:
+      type: object
+      properties:
+        body:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.Body'
+          nullable: true
+        httpHeaders:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.Httpheaders'
+        httpStatusCode:
+          type: integer
+          format: int32
+        referenceId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.Response:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        success:
+          type: boolean
+        message:
+          type: string
+          nullable: true
+        errorCode:
+          type: string
+          nullable: true
+        errors:
+          type: array
+          items:
+            type: string
+          nullable: true
+        fields:
+          type: array
+          items:
+            type: string
+          nullable: true
+        compositeResponse:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.Compositeresponse'
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.RcxpGenericResponse:
+      type: object
+      properties:
+        errorSource:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+        succeeded:
+          type: boolean
+        statusCode:
+          type: integer
+          format: int32
+          nullable: true
+        response:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.Response'
+          nullable: true
+        soqlResponse:
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail:
+      type: object
+      properties:
+        rcxpGenericResponse:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpGenericResponse'
+      additionalProperties: false
+    Vcep.Api.Models.Responses.StandardResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        statusMessage:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+        responseDetails:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+      additionalProperties: false
+    Vcep.Api.Models.Responses.BadRequestResponse_1-Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        statusMessage:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+        responseDetails:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpIntegrationResponseDetail'
+        errorMessage:
+          type: string
+          nullable: true
+        responsibleSystem:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Api.Models.Responses.StandardErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          format: int32
+        statusMessage:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+        errorMessage:
+          type: string
+          nullable: true
+        responsibleSystem:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Enums.RequestOperation:
+      enum:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+        - HEAD
+      type: string
+    Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject:
+      type: object
+      properties:
+        url:
+          type: string
+          nullable: true
+        method:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Enums.RequestOperation'
+        referenceId:
+          type: string
+          nullable: true
+        body:
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject:
+      required:
+        - content
+        - rcxpUserType
+        - source
+      type: object
+      properties:
+        rcxpUserType:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Enums.RcxpUserType'
+        source:
+          type: string
+        content:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpMessage_1-Newtonsoft.Json.Linq.JObject'
+        apiVersion:
+          type: string
+          nullable: true
+        logRequest:
+          type: boolean
+        requestId:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.RcxpSoqlContainer:
+      required:
+        - soqlQuery
+      type: object
+      properties:
+        soqlQuery:
+          type: string
+      additionalProperties: false
+    Vcep.Salesforce.Client.Models.RcxpIntegrationApiRequestContainer_1-Vcep.Salesforce.Client.Models.RcxpSoqlContainer:
+      required:
+        - content
+        - rcxpUserType
+        - source
+      type: object
+      properties:
+        rcxpUserType:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Enums.RcxpUserType'
+        source:
+          type: string
+        content:
+          $ref: '#/components/schemas/Vcep.Salesforce.Client.Models.RcxpSoqlContainer'
+        apiVersion:
+          type: string
+          nullable: true
+        logRequest:
+          type: boolean
+        requestId:
+          type: string
+          nullable: true
+        operationId:
+          type: string
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
